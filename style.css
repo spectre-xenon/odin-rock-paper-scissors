@@ -10,6 +10,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  overflow: hidden;
 }
 
 :root {
@@ -47,7 +49,7 @@ img {
 }
 
 #middleLine h1 {
-  flex: 0 1 0;
+  flex: 0.6;
   align-self: center;
   font-size: 80px;
   display: none;
@@ -62,7 +64,7 @@ img {
 
 rect {
   background-color: black;
-  width: 1%;
+  width: 0.8%;
   align-self: center;
 }
 
@@ -81,7 +83,7 @@ rect {
 }
 
 #middleLine input {
-  flex: 0.1;
+  flex: 0.3;
   align-self: center;
   width: 35%;
   border: none;
@@ -90,6 +92,7 @@ rect {
   color: #fff;
   font-size: 41px;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+  z-index: 100;
 }
 
 #middleLine input:hover {
@@ -104,6 +107,9 @@ rect {
   height: 100vh;
   width: 100vw;
   display: flex;
+  opacity: 0;
+  transition-duration: 1s;
+  transform: translateY(-100px);
 }
 
 #mainContainer .contentSection {
@@ -129,17 +135,31 @@ rect {
   width: 30%;
 }
 
+#playerSelection .rockPaperScissors img:hover {
+  cursor: pointer;
+  scale: 105%;
+  rotate: 1deg;
+}
+
 #mainContainer .contentSection h3 {
   flex: 1;
   font-size: 40px;
 }
 
 #playerSelection {
-  padding-left: 5%;
+  padding-left: 7%;
+}
+
+#computerSelection {
+  padding-right: 7%;
 }
 
 .disappear {
   animation: disappear 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.appear {
+  animation: disapear 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) backwards;
 }
 
 @keyframes disappear {

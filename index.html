@@ -9,32 +9,22 @@
   <body>
     <div id="middleLine">
       <rect id="firstLine"></rect>
-      <h1>Round</h1>
+      <h1>Round 1</h1>
       <img
         id="logo"
         src="./resources/imgs/logo.png"
         alt="Rock paper Scissors"
       />
       <rect id="secondLine"></rect>
-      <input type="button" value="Start?" />
+      <input id="startButt" type="button" value="Start?" />
       <rect id="thirdLine"></rect>
     </div>
     <div id="mainContainer">
-      <div class="contentSection">
-        <h2>Computer <span class="textGlow">Choice</span></h2>
-        <div class="rockPaperScissors" id="computerSelection">
-          <img
-            id="cRock"
-            class="disappear"
-            src="./resources/imgs/rock.png"
-            alt="rock"
-          />
-          <img
-            id="cPaper"
-            class="disappear"
-            src="./resources/imgs/paper.png"
-            alt="paper"
-          />
+      <div class="contentSection" id="computerSelection">
+        <h2>Computer Choice<span class="textGlow"></span></h2>
+        <div class="rockPaperScissors">
+          <img id="cRock" src="./resources/imgs/rock.png" alt="rock" />
+          <img id="cPaper" src="./resources/imgs/paper.png" alt="paper" />
           <img
             id="cScissors"
             src="./resources/imgs/scissors.png"
@@ -43,19 +33,13 @@
         </div>
         <h3>Score: 0</h3>
       </div>
-      <div class="contentSection">
-        <h2>Select your <span class="textGlow">choice!</span></h2>
-        <div class="rockPaperScissors" id="playerSelection">
-          <img
-            id="pRock"
-            class="disappear"
-            src="./resources/imgs/rock.png"
-            alt="rock"
-          />
+      <div class="contentSection" id="playerSelection">
+        <h2>Select your choice! <span class="textGlow"></span></h2>
+        <div class="rockPaperScissors">
+          <img id="pRock" src="./resources/imgs/rock.png" alt="rock" />
           <img id="pPaper" src="./resources/imgs/paper.png" alt="paper" />
           <img
             id="pScissors"
-            class="disappear"
             src="./resources/imgs/scissors.png"
             alt="scissors"
           />
