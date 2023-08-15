@@ -7,7 +7,42 @@
     <title>Odin-rock-paper-scissors</title>
   </head>
   <body>
-    
+    <div id="middleLine">
+      <rect id="firstLine"></rect>
+      <h1>Round</h1>
+      <img
+        id="logo"
+        src="./resources/imgs/logo.png"
+        alt="Rock paper Scissors"
+      />
+      <rect id="secondLine"></rect>
+      <input type="button" value="Start?" />
+      <rect id="thirdLine"></rect>
+    </div>
+    <div id="mainContainer">
+      <div class="contentSection">
+        <h2>Computer <span class="textGlow">Choice</span></h2>
+        <div class="rockPaperScissors" id="computerSelection">
+          <img class="disappear" src="./resources/imgs/rock.png" alt="rock" />
+          <img class="disappear" src="./resources/imgs/paper.png" alt="paper" />
+          <img src="./resources/imgs/scissors.png" alt="scissors" />
+        </div>
+        <h3>Score: 0</h3>
+      </div>
+      <div class="contentSection">
+        <h2>Select your <span class="textGlow">choice!</span></h2>
+        <div class="rockPaperScissors" id="playerSelection">
+          <img class="disappear" src="./resources/imgs/rock.png" alt="rock" />
+          <img src="./resources/imgs/paper.png" alt="paper" />
+          <img
+            class="disappear"
+            src="./resources/imgs/scissors.png"
+            alt="scissors"
+          />
+        </div>
+        <h3>Score: 0</h3>
+      </div>
+    </div>
   </body>
   <script src="./script.js"></script>
 </html>
