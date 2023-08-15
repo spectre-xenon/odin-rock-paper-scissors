@@ -1,6 +1,8 @@
 let playerScore = 0;
 let computerScore = 0;
 let computerChoiceArr = ["rock", "paper", "scissors"];
+const playerRock = document.querySelector("#pPaper");
+playerRock.style.width = 50%;
 
 function game() {
   let roundReturn;
