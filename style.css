@@ -103,6 +103,11 @@ rect {
   color: black;
 }
 
+#middleLine input:disabled {
+  pointer-events: none;
+  background: grey;
+}
+
 #mainContainer {
   height: 100vh;
   width: 100vw;
@@ -192,5 +197,98 @@ rect {
 @keyframes textGlow {
   to {
     background-position: 200% center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #middleLine {
+    height: 100vh;
+    width: 100vw;
+    flex-direction: row-reverse;
+    margin: auto 0;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  #middleLine h1,
+  #logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 10%;
+    font-size: 76px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  rect {
+    background-color: black;
+    height: 0.35%;
+    justify-self: center;
+    align-self: center;
+  }
+
+  #firstLine {
+    display: none;
+  }
+
+  #secondLine {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  #thirdLine {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  #middleLine input {
+    flex: 0.7;
+    height: 4%;
+    margin: 0 3%;
+    border-radius: 6px;
+    font-size: 30px;
+    pointer-events: all;
+  }
+
+  #middleLine input:hover {
+    cursor: pointer;
+    background: white;
+    border: #000 1px solid;
+    rotate: 0deg;
+    color: black;
+  }
+
+  #mainContainer {
+    flex-direction: column;
+  }
+
+  #mainContainer .contentSection {
+    width: 100%;
+  }
+
+  #playerSelection {
+    padding: 0;
+  }
+
+  #computerSelection {
+    padding: 0;
+  }
+
+  #mainContainer .contentSection h2 {
+    font-size: 34px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #mainContainer .contentSection span {
+    margin: 0 2%;
   }
 }
