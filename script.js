@@ -1,8 +1,23 @@
-let playerScore = 0;
+let playerScore;
+let computerScore;
+let roundNum;
+
+if (
+  localStorage.getItem("playerScore") &&
+  localStorage.getItem("computerScore") &&
+  localStorage.getItem("roundNum")
+) {
+  playerScore = parseInt(localStorage.getItem("playerScore"));
+  computerScore = parseInt(localStorage.getItem("computerScore"));
+  roundNum = parseInt(localStorage.getItem("roundNum"));
+} else {
+  localStorage.setItem("playerScore", 0);
+  localStorage.setItem("computerScore", 0);
+  localStorage.setItem("roundNum", 0);
+}
+
 const playerScoreh3 = document.querySelector("#playerSelection h3");
-let computerScore = 0;
 const computerScoreh3 = document.querySelector("#computerSelection h3");
-let roundNum = 0;
 let computerChoiceArr = ["rock", "paper", "scissors"];
 const roundLogo = document.querySelector("#middleLine h1");
 const logo = document.getElementById("logo");
@@ -12,59 +27,30 @@ const playerRock = document.querySelector("#pRock");
 const playerPaper = document.querySelector("#pPaper");
 const playerScissors = document.querySelector("#pScissors");
 const playerSectionh2 = document.querySelector("#playerSelection h2");
-const playerSectionSpan = document.querySelector("#playerSelection h2 span");
 const computerRock = document.querySelector("#cRock");
 const computerPaper = document.querySelector("#cPaper");
 const computerScissors = document.querySelector("#cScissors");
 const computerSectionh2 = document.querySelector("#computerSelection h2");
-const computerSectionSpan = document.querySelector(
-  "#computerSelection h2 span"
-);
 
 let start = startButt.addEventListener("click", () => {
   //mainContainer style
   startButt.disabled = true;
+  startButt.style.pointerEvents = "none";
+  startButt.style.background = "grey";
   mainContainer.style.opacity = "100%";
   mainContainer.style.rotate = "0deg";
   mainContainer.style.transform = "translateY(0px)";
   logo.style.display = "none";
   roundLogo.style.display = "block";
+  roundLogo.innerHTML = `Round ${roundNum}`;
+  playerScoreh3.innerHTML = `Score: ${playerScore}`;
+  computerScoreh3.innerHTML = `Score: ${computerScore}`;
 });
-
-function game(playerChoice) {
-  // let roundReturn;
-  // for (let roundNumber = 1; roundNumber <= 5; roundNumber++) {
-  //   roundReturn = playRound(roundNumber);
-  //   if (roundReturn === "player") {
-  //     playerScore += 1;
-  //     console.log(`Player score is ${playerScore}`);
-  //     console.log(`Computer score is ${computerScore}`);
-  //   } else if (roundReturn === "computer") {
-  //     computerScore += 1;
-  //     console.log(`Player score is ${playerScore}`);
-  //     console.log(`Computer score is ${computerScore}`);
-  //   }
-  // }
-  // if (playerScore === computerScore) {
-  //   console.log("The game ends in a draw!");
-  //   playerScore = 0;
-  //   computerScore = 0;
-  // } else if (playerScore > computerScore) {
-  //   console.log("Player wins the game!");
-  //   playerScore = 0;
-  //   computerScore = 0;
-  // } else {
-  //   console.log("Computer wins the game!");
-  //   playerScore = 0;
-  //   computerScore = 0;
-  // }
-}
 
 let computerSelection = () => {
   let computerChoice = computerChoiceArr[Math.floor(Math.random() * 3)];
 
-  computerSectionh2.innerHTML = "Computer selected";
-  computerSectionSpan.innerHTML = `${computerChoice.charAt(0).toUpperCase()}`;
+  computerSectionh2.innerHTML = `Computer selected <span class="textGlow">${computerChoice}</span>!`;
   console.log(computerChoice);
   if (computerChoice === "rock") {
     computerPaper.classList.add("disappear");
@@ -82,6 +68,7 @@ let computerSelection = () => {
 };
 
 function playRound(playerChoice) {
+  playerSectionh2.innerHTML = `PLayer selected <span class="textGlow">${playerChoice}</span>!`;
   let computerChoice = computerSelection();
   let winCases = new Map([
     ["paper", "rock"],
@@ -92,33 +79,53 @@ function playRound(playerChoice) {
   if (playerChoice === computerChoice) {
     //draw
     roundLogo.innerHTML = "It's a draw!";
+    roundNum += 1;
+    localStorage.setItem("roundNum", roundNum);
   } else if (winCases.get(playerChoice) === computerChoice) {
     //player wins
     roundLogo.innerHTML = "Player wins!";
-    playerScore += 1;
+    playerScore++;
+    localStorage.setItem("playerScore", playerScore);
+    roundNum++;
+    localStorage.setItem("roundNum", roundNum);
     playerScoreh3.innerHTML = `Score: ${playerScore}`;
   } else {
     //computer wins
     roundLogo.innerHTML = "Computer wins!";
-    computerScore += 1;
+    computerScore++;
+    localStorage.setItem("computerScore", computerScore);
+    roundNum++;
+    localStorage.setItem("roundNum", roundNum);
     computerScoreh3.innerHTML = `Score: ${computerScore}`;
   }
 }
 
-playerRock.addEventListener("click", () => {
-  playerPaper.classList.add("disappear");
-  playerScissors.classList.add("disappear");
-  playRound("rock");
-});
+playerRock.addEventListener(
+  "click",
+  () => {
+    playerPaper.classList.add("disappear");
+    playerScissors.classList.add("disappear");
+    playRound("rock");
+  },
+  { once: true }
+);
 
-playerPaper.addEventListener("click", () => {
-  playerRock.classList.add("disappear");
-  playerScissors.classList.add("disappear");
-  playRound("paper");
-});
+playerPaper.addEventListener(
+  "click",
+  () => {
+    playerRock.classList.add("disappear");
+    playerScissors.classList.add("disappear");
+    playRound("paper");
+  },
+  { once: true }
+);
 
-playerScissors.addEventListener("click", () => {
-  playerPaper.classList.add("disappear");
-  playerRock.classList.add("disappear");
-  playRound("scissors");
-});
+playerScissors.addEventListener(
+  "click",
+  () => {
+    playerPaper.classList.add("disappear");
+    playerRock.classList.add("disappear");
+    playRound("scissors");
+  },
+  { once: true }
+);
